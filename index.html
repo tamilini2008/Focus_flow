@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090611">
+    <title>FocusFlow | Student Productivity</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+            <span>Focus<span class="purple-text">Flow</span></span>
+        </div>
+
+        <div class="profile">
+            <div class="avatar">S</div>
+            <div>
+                <h4 id="profileName">Student</h4>
+                <span>Personal Workspace</span>
+            </div>
+        </div>
+
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="navigation">
+            <button class="nav-item active" data-page="dashboard">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </button>
+            <button class="nav-item" data-page="tasks">
+                <i class="fa-solid fa-list-check"></i> My Tasks
+            </button>
+            <button class="nav-item" data-page="planner">
+                <i class="fa-solid fa-calendar-days"></i> Study Planner
+            </button>
+            <button class="nav-item" data-page="timer">
+                <i class="fa-solid fa-clock"></i> Focus Timer
+            </button>
+            <button class="nav-item" data-page="exams">
+                <i class="fa-solid fa-graduation-cap"></i> Exam Tracker
+            </button>
+            <button class="nav-item" data-page="analytics">
+                <i class="fa-solid fa-chart-line"></i> Analytics
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="quote-card">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>Small steps every day lead to big results.</p>
+                <span>YOUR DAILY REMINDER</span>
+            </div>
+            <button class="nav-item" id="settingsBtn">
+                <i class="fa-solid fa-gear"></i> Settings
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button class="icon-btn menu-btn" id="menuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="breadcrumb">Workspace <span>/</span> <b id="pageName">Dashboard</b></div>
+            <div class="topbar-right">
+                <div class="date-display" id="todayDate"></div>
+                <button class="icon-btn" id="themeBtn" title="Change theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <section class="page active-page" id="dashboard">
+
+            <div class="welcome-section">
+                <div>
+                    <span class="eyebrow">YOUR PERSONAL PRODUCTIVITY SPACE</span>
+                    <h1 id="greeting">Good afternoon, Student <span>✦</span></h1>
+                    <p>Every productive day brings you one step closer to your goals.</p>
+                </div>
+                <div class="welcome-date" id="welcomeDate"></div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Tasks Completed</span>
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h2 id="completedCount">0</h2>
+                    <p>All-time completed tasks</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Study Hours</span>
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    <h2 id="studyHours">0h</h2>
+                    <p>Total focus time</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Pending Tasks</span>
+                        <i class="fa-solid fa-list-ul"></i>
+                    </div>
+                    <h2 id="pendingCount">0</h2>
+                    <p>Tasks waiting for you</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Productivity Score</span>
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h2 id="productivityScore">0%</h2>
+                    <p>Based on completed tasks</p>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+
+                <div class="panel tasks-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Today's Tasks</h3>
+                            <p>Your priorities for today</p>
+                        </div>
+                        <button class="text-btn" data-go="tasks">View all <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <div id="dashboardTasks" class="task-list">
+                        <div class="empty-state">No tasks yet. Add your first task!</div>
+                    </div>
+                    <button class="add-inline" id="quickAddBtn">
+                        <i class="fa-solid fa-plus"></i> Add a new task
+                    </button>
+                </div>
+
+                <div class="panel focus-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Focus Session</h3>
+                            <p>Make your time count</p>
+                        </div>
+                        <i class="fa-solid fa-stopwatch panel-icon"></i>
+                    </div>
+                    <div class="mini-timer">
+                        <div class="timer-circle">
+                            <div>
+                                <h2 id="miniTimer">25:00</h2>
+                                <span id="miniTimerLabel">FOCUS TIME</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="primary-btn full-btn" data-go="timer">
+                        <i class="fa-solid fa-play"></i> Start focusing
+                    </button>
+                </div>
+
+                <div class="panel progress-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Daily Progress</h3>
+                            <p>Keep moving forward</p>
+                        </div>
+                        <i class="fa-solid fa-chart-pie panel-icon"></i>
+                    </div>
+                    <div class="progress-content">
+                        <div class="progress-ring" id="progressRing">
+                            <div>
+                                <h2 id="progressPercent">0%</h2>
+                                <span>COMPLETED</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-legend">
+                        <span><i class="dot purple-dot"></i> Completed</span>
+                        <span><i class="dot grey-dot"></i> Remaining</span>
+                    </div>
+                </div>
+
+                <div class="panel upcoming-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Upcoming Exams</h3>
+                            <p>Stay prepared, stay confident</p>
+                        </div>
+                        <button class="text-btn" data-go="exams">View all</button>
+                    </div>
+                    <div id="upcomingExams">
+                        <div class="empty-state">No upcoming exams added.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="page" id="tasks">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">STAY ORGANIZED</span>
+                    <h1>My Tasks</h1>
+                    <p>Plan your work. Complete your goals.</p>
+                </div>
+                <button class="primary-btn" id="addTaskBtn">
+                    <i class="fa-solid fa-plus"></i> New Task
+                </button>
+            </div>
+
+            <div class="filter-bar">
+                <button class="filter-btn selected" data-filter="all">All Tasks</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <div id="allTasks" class="all-tasks-list"></div>
+        </section>
+
+        <section class="page" id="planner">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">PLAN YOUR SUCCESS</span>
+                    <h1>Study Planner</h1>
+                    <p>Build a consistent study routine.</p>
+                </div>
+                <button class="primary-btn" id="addPlanBtn">
+                    <i class="fa-solid fa-plus"></i> Add Study Plan
+                </button>
+            </div>
+            <div class="panel planner-panel">
+                <div class="panel-heading">
+                    <h3>Your Study Schedule</h3>
+                    <span class="small-muted">Weekly study sessions</span>
+                </div>
+                <div id="studyPlans" class="plans-list"></div>
+            </div>
+        </section>
+
+        <section class="page" id="timer">
+            <div class="timer-page">
+                <span class="eyebrow">DEEP WORK MODE</span>
+                <h1>Focus Timer</h1>
+                <p>One session at a time. One goal at a time.</p>
+
+                <div class="timer-mode">
+                    <button class="mode-btn active" data-minutes="25" data-mode="Focus">Focus</button>
+                    <button class="mode-btn" data-minutes="5" data-mode="Short Break">Short Break</button>
+                    <button class="mode-btn" data-minutes="15" data-mode="Long Break">Long Break</button>
+                </div>
+
+                <div class="big-timer-circle">
+                    <div>
+                        <span id="timerModeLabel">FOCUS SESSION</span>
+                        <h2 id="mainTimer">25:00</h2>
+                        <p id="timerStatus">Ready when you are.</p>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button class="primary-btn timer-start" id="startTimer">
+                        <i class="fa-solid fa-play"></i> Start
+                    </button>
+                    <button class="secondary-btn" id="resetTimer">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                </div>
+
+                <div class="session-count">
+                    <i class="fa-solid fa-trophy"></i>
+                    Completed focus sessions: <b id="sessionCount">0</b>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="exams">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">PREPARE WITH CONFIDENCE</span>
+                    <h1>Exam Tracker</h1>
+                    <p>Never lose track of an important exam.</p>
+                </div>
+                <button class="primary-btn" id="addExamBtn">
+                    <i class="fa-solid fa-plus"></i> Add Exam
+                </button>
+            </div>
+            <div id="examList" class="exam-grid"></div>
+        </section>
+
+        <section class="page" id="analytics">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">YOUR GROWTH JOURNEY</span>
+                    <h1>Analytics</h1>
+                    <p>Understand your productivity and progress.</p>
+                </div>
+            </div>
+            <div class="stats-grid analytics-stats">
+                <div class="stat-card">
+                    <span>Total Tasks Completed</span>
+                    <h2 id="analyticsCompleted">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Total Study Hours</span>
+                    <h2 id="analyticsHours">0h</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Focus Sessions</span>
+                    <h2 id="analyticsSessions">0</h2>
+                </div>
+                <div class="stat-card">
+                    <span>Current Completion</span>
+                    <h2 id="analyticsRate">0%</h2>
+                </div>
+            </div>
+            <div class="panel analytics-panel">
+                <h3>Weekly Productivity</h3>
+                <p class="small-muted">Tasks completed each day</p>
+                <div class="chart" id="weeklyChart"></div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- TASK MODAL -->
+<div class="modal-overlay" id="taskModal">
+    <div class="modal">
+        <div class="modal-heading">
+            <div>
+                <h2>Create a Task</h2>
+                <p>What would you like to accomplish?</p>
+            </div>
+            <button class="close-btn" data-close="taskModal">&times;</button>
+        </div>
+        <form id="taskForm">
+            <label>Task Name</label>
+            <input type="text" id="taskTitle" placeholder="e.g. Study Data Structures" required maxlength="100">
+
+            <label>Category</label>
+            <select id="taskCategory">
+                <option value="Study">Study</option>
+                <option value="Assignment">Assignment</option>
+                <option value="Personal">Personal</option>
+                <option value="Project">Project</option>
+            </select>
+
+            <label>Priority</label>
+            <select id="taskPriority">
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+            </select>
+
+            <label>Due Date</label>
+            <input type="date" id="taskDate" required>
+
+            <button type="submit" class="primary-btn full-btn">Save Task</button>
+        </form>
+    </div>
+</div>
+
+<!-- STUDY PLAN MODAL -->
+<div class="modal-overlay" id="planModal">
+    <div class="modal">
+        <div class="modal-heading">
+            <div>
+                <h2>Study Session</h2>
+                <p>Create your study schedule.</p>
+            </div>
+            <button class="close-btn" data-close="planModal">&times;</button>
+        </div>
+        <form id="planForm">
+            <label>Subject</label>
+            <input id="planSubject" placeholder="e.g. Mathematics" required maxlength="80">
+            <label>Day</label>
+            <select id="planDay">
+                <option>Monday</option><option>Tuesday</option>
+                <option>Wednesday</option><option>Thursday</option>
+                <option>Friday</option><option>Saturday</option>
+                <option>Sunday</option>
+            </select>
+            <label>Start Time</label>
+            <input type="time" id="planTime" required>
+            <label>Duration (minutes)</label>
+            <input type="number" id="planDuration" min="5" max="600" value="60" required>
+            <button type="submit" class="primary-btn full-btn">Save Study Plan</button>
+        </form>
+    </div>
+</div>
+
+<!-- EXAM MODAL -->
+<div class="modal-overlay" id="examModal">
+    <div class="modal">
+        <div class="modal-heading">
+            <div>
+                <h2>Add an Exam</h2>
+                <p>Keep your exam dates organized.</p>
+            </div>
+            <button class="close-btn" data-close="examModal">&times;</button>
+        </div>
+        <form id="examForm">
+            <label>Subject Name</label>
+            <input id="examSubject" placeholder="e.g. Analog Communication" required maxlength="80">
+            <label>Exam Date</label>
+            <input type="date" id="examDate" required>
+            <label>Exam Type</label>
+            <select id="examType">
+                <option>Internal</option>
+                <option>Model Exam</option>
+                <option>Semester Exam</option>
+                <option>Assignment</option>
+            </select>
+            <button type="submit" class="primary-btn full-btn">Save Exam</button>
+        </form>
+    </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+        <div class="modal-heading">
+            <div>
+                <h2>Settings</h2>
+                <p>Customize your workspace.</p>
+            </div>
+            <button class="close-btn" data-close="settingsModal">&times;</button>
+        </div>
+        <form id="settingsForm">
+            <label>Your Display Name</label>
+            <input id="nameInput" maxlength="30" placeholder="Enter your name">
+            <button class="primary-btn full-btn" type="submit">Save Changes</button>
+        </form>
+        <div class="danger-zone">
+            <h4>Reset Workspace</h4>
+            <p>This permanently deletes your locally saved tasks, plans and exams.</p>
+            <button class="danger-btn" id="resetData">Reset All Data</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
